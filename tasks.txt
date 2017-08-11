@@ -1,1 +1,1 @@
-satori(socet) -> spark streaming (socet) 
+satori(kafka/flume) -> kafka/flume konsole
