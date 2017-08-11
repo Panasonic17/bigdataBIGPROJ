@@ -50,3 +50,7 @@ fabric.properties
 Satori_Wiki/\.idea/
 
 Satori/\.idea/
+
+*.class
+
+TESTING/KAFKA PRODUCER/\.idea/

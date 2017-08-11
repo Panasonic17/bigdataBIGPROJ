@@ -1,1 +1,2 @@
 satori(kafka/flume) -> kafka/flume konsole
+                        ->hBase and spark streaming (two recivers)
