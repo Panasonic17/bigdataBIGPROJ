@@ -22,5 +22,10 @@
         <artifactId>satori-rtm-sdk-jackson2</artifactId>
         <version>1.0.3</version>
     </dependency>
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka-clients</artifactId>
+        <version>0.8.2.1</version>
+    </dependency>
 </dependencies>
 </project>

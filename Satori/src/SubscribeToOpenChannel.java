@@ -1,5 +1,7 @@
 import com.satori.rtm.*;
 import com.satori.rtm.model.*;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 
 public class SubscribeToOpenChannel {
     static final String endpoint = "wss://open-data.api.satori.com";
@@ -16,12 +18,15 @@ public class SubscribeToOpenChannel {
                 })
                 .build();
 
-        final DataSender sender = new DataSender();
+        final Producer<String, String> producer = new KafkaProd().getProduser();
+
         SubscriptionAdapter listener = new SubscriptionAdapter() {
             @Override
             public void onSubscriptionData(SubscriptionData data) {
                 for (AnyJson json : data.getMessages()) {
-                    sender.send(json.toString());
+                    ProducerRecord<String, String> wiki = new ProducerRecord<String, String>(
+                            "javaworld", "test", json.toString());
+                    producer.send(wiki);
                 }
             }
         };
