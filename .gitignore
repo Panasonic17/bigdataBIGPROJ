@@ -54,3 +54,7 @@ Satori/\.idea/
 *.class
 
 TESTING/KAFKA PRODUCER/\.idea/
+
+kafkaConsumer/\.idea/
+
+SparkStreamingConsumer/\.idea/
