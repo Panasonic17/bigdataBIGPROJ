@@ -1,3 +1,5 @@
+
+
 import com.satori.rtm.*;
 import com.satori.rtm.model.*;
 import org.apache.kafka.clients.producer.Producer;
@@ -26,6 +28,7 @@ public class SubscribeToOpenChannel {
                 for (AnyJson json : data.getMessages()) {
                     ProducerRecord<String, String> wiki = new ProducerRecord<String, String>(
                             "javaworld", "test", json.toString());
+
                     producer.send(wiki);
                 }
             }

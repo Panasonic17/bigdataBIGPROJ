@@ -58,3 +58,9 @@ TESTING/KAFKA PRODUCER/\.idea/
 kafkaConsumer/\.idea/
 
 SparkStreamingConsumer/\.idea/
+SparkStreamingConsumer/target/
+Kafka_Spark_Streaming(Scala)/target/
+Satori/target/classes/lib/jackson-core-2.8.8.jar
+Satori/target/
+Socets/server/.idea/
+Socets/client/.idea/
