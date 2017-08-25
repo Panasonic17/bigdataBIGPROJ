@@ -19,20 +19,20 @@ import java.util.Map;
 
 public class Main {
      public static  void main(String[] args) throws InterruptedException {
-        SparkConf conf = new SparkConf().setAppName("NetworkWordCount");
+        SparkConf conf = new SparkConf().setAppName("NetworkWordCount").set("spark.driver.memory","512m").setMaster("yarn-client");
         JavaStreamingContext jssc = new JavaStreamingContext(conf, Durations.seconds(1));
         Map<String, Object> props = new HashMap();
-        props.put("bootstrap.servers", "localhost:9092");
+        props.put("bootstrap.servers", "sandbox.hortonworks.com:6667");
         props.put("group.id", "consumer-tutorial");
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-
+         props.put("partition.assignment.strategy", "range");
         Collection<String> topics = Arrays.asList("javaworld");
 
-//         JavaPairReceiverInputDStream<String, String> kafkaStream =KafkaUtils.createDirectStream()
+//         JavaPairReceiverInputDStream<String, String> kafkaStream =
 //
-////                         .createStream(streamingContext,
-////                         [ZK quorum], [consumer group id], [per-topic number of Kafka partitions to consume]);
+//                         .createStream(streamingContext,
+//                         [ZK quorum], [consumer group id], [per-topic number of Kafka partitions to consume]);
 
 
          JavaInputDStream<ConsumerRecord<String, String>> stream =
@@ -42,12 +42,12 @@ public class Main {
                          ConsumerStrategies.<String, String>Subscribe(topics, props)
                  );
 //
-//        stream.map(a -> {
-//            System.out.println(a.value());
-//            return a.value();
-//        }).print();
-//        jssc.start();
-//        jssc.awaitTermination();
+        stream.map(a -> {
+            System.out.println(a.value());
+            return a.value();
+        }).print();
+        jssc.start();
+        jssc.awaitTermination();
 
     }
 }
